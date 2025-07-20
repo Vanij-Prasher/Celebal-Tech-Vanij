@@ -1,5 +1,12 @@
 # 🌸 Week 7: Deploying ML Models with Streamlit – Iris Flower Predictor
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://celebal-tech-vanij-yplc9kqhptzlt5ztdelg4k.streamlit.app/)
+
+🔗 **Live Demo:** [Click here to open the deployed app](https://celebal-tech-vanij-yplc9kqhptzlt5ztdelg4k.streamlit.app/)
+
+---
+
+
 ## 🎯 Project Goal
 
 Build and deploy a **Machine Learning Web Application** using **Streamlit** that predicts the **species of an Iris flower** based on user-input features. The app uses a trained classifier and visualizations to enhance interactivity and explainability.
