@@ -1,9 +1,0 @@
-streamlit
-pandas
-python-dotenv
-openpyxl
-langchain
-langchain-community
-langchain-groq
-langchain-huggingface
-faiss-cpu
