@@ -1,9 +1,0 @@
-# .gitignore
-*.env
-__pycache__/
-*.gguf
-*.ckpt
-*.pt
-*.bin
-*.xls
-.DS_Store

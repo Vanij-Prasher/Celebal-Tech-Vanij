@@ -1,5 +1,5 @@
 import streamlit as st
-from rag_chatbot import qa_chain
+from chatbot import get_answer
 from PIL import Image
 
 # --- PAGE CONFIG ---
@@ -8,6 +8,7 @@ st.set_page_config(
     page_icon="📊",
     layout="wide"
 )
+
 # --- INITIALIZE SESSION STATE ---
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
@@ -30,7 +31,7 @@ with st.sidebar:
     """)
 
     st.markdown("## ℹ️ About App")
-    st.write("This chatbot uses **RAG (Retrieval-Augmented Generation)** with a **local LLM (Mistral 7B)** to answer intelligent questions from a **Loan CSV dataset**.")
+    st.write("This chatbot uses **RAG (Retrieval-Augmented Generation)** with a **Hugging Face LLM (Mistral 7B)** to answer intelligent questions from a **Loan CSV dataset**.")
     st.markdown("---")
     st.caption("🚀 Built with ❤️ by Vanij Prasher")
 
@@ -48,61 +49,53 @@ st.markdown(
 st.markdown("---")
 
 # --- Chat Input Section ---
-
 with st.container():
     st.markdown("### 💬 Ask your question about the loan:")
-
-    # Input box with session state
     st.text_input("Type your question here", key="user_input", placeholder="You can ask your QUESTION here...")
 
-    # Submit button
     if st.button("📤 Submit Question"):
         question = st.session_state.user_input
 
         if question:
             with st.spinner("🔍 Researching with LLM..."):
-                result = qa_chain.run(question)
+                result = get_answer(question)
 
             st.session_state.latest_question = question
             st.session_state.latest_answer = result
-
-            # Show answer
-            st.markdown("## 🧠 Answer:")
-            st.success(result)
-
-            # Save to chat history
             st.session_state.chat_history.append((question, result))
 
-            # Clear input box
-            # Clear input by rerunning app
             st.rerun()
         else:
             st.warning("Please enter a question.")
 
-    # --- Display Latest Answer ---
-    if "latest_answer" in st.session_state and st.session_state.latest_answer:
+    # --- Show Latest Answer ---
+    if (
+        "latest_answer" in st.session_state
+        and st.session_state.latest_answer
+        and isinstance(st.session_state.latest_answer, dict)
+        and "result" in st.session_state.latest_answer
+    ):
         st.markdown("## 🧠 Answer")
         st.markdown(f"**Q:** {st.session_state.latest_question}")
-        st.success(st.session_state.latest_answer)
+        st.success(st.session_state.latest_answer["result"])
         st.markdown("---")
 
-    # If no question has been submitted yet
+    # --- Chat Suggestions ---
     if not st.session_state.chat_history:
         st.info(
-    "💡 Try asking:\n"
-    "- How many approved loans for graduates?\n"
-    "- What is the common loan term?\n"
-    "- What’s the approval rate in urban areas?"
-)
+            "💡 Try asking:\n"
+            "- How many approved loans for graduates?\n"
+            "- What is the common loan term?\n"
+            "- What’s the approval rate in urban areas?"
+        )
     else:
-        # --- Chat History (moved here) ---
         st.markdown("## 📜 Chat History:")
         for i, (q, a) in enumerate(reversed(st.session_state.chat_history), 1):
             st.markdown(f"**Q{i}:** {q}")
-            st.markdown(f"**A{i}:** {a}")
+            st.markdown(f"**A{i}:** {a['result'] if isinstance(a, dict) and 'result' in a else a}")
             st.markdown("---")
 
-# Footer
+# --- Footer ---
 st.markdown("---")
 st.markdown(
     "<div style='text-align: center; font-size: 14px; color: gray;'>Built with 🧠 Mistral + LangChain + Streamlit | © 2025 Vanij Prasher</div>",
