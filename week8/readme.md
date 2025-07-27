@@ -8,7 +8,7 @@ A smart AI chatbot that answers user queries based on a **loan approval dataset*
 
 > ⚙️ Hosted via Streamlit  
 > 🔗 [Click here to try the chatbot](https://your-streamlit-link)  
-> _(Replace with actual link after deployment)_
+
 
 ---
 
