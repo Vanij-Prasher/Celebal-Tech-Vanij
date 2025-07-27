@@ -13,19 +13,15 @@ from langchain.chains import RetrievalQA
 load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-# Load and process dataset
-CSV_PATH = "dataset.csv"
+# Ensure the CSV is read from the same directory
+CSV_PATH = os.path.join(os.path.dirname(__file__), "dataset.csv")
+
+# Load with LangChain for RAG
 loader = CSVLoader(file_path=CSV_PATH)
 documents = loader.load()
 
-# Also load with pandas for stats
-CSV_PATH = "dataset.csv"
-
-# Use CSVLoader
-loader = CSVLoader(file_path=CSV_PATH)
-documents = loader.load()
-
-# For stats, use pandas read_csv
+# Load with pandas for stats
+import pandas as pd
 df = pd.read_csv(CSV_PATH)
 
 # Split into chunks
