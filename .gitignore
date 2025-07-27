@@ -1,0 +1,26 @@
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Large model or binary files
+*.gguf
+*.ckpt
+*.pt
+*.bin
+
+# Excel and data files
+*.xls
+*.xlsx
+*.csv
+
+# Mac system files
+.DS_Store
+
+# Streamlit logs or config
+.streamlit/
+
+# VS Code settings
+.vscode/

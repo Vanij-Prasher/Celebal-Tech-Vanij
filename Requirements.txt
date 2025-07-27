@@ -1,0 +1,12 @@
+streamlit
+langchain>=0.1.0
+faiss-cpu
+llama-cpp-python>=0.2.11
+transformers
+sentence-transformers
+python-dotenv
+pandas
+tqdm
+tabulate
+huggingface-hub
+pillow
