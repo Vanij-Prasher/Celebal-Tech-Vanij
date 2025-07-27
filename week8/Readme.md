@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 📊 Loan RAG Q&A Chatbot
 
 This is an interactive chatbot that uses **RAG (Retrieval-Augmented Generation)** to intelligently answer user questions from a **Loan CSV dataset**. It combines local **LLMs (like Mistral 7B)** with **LangChain**, **FAISS vector store**, and **Streamlit** to provide insightful, document-based answers.
@@ -254,4 +254,4 @@ For queries, collaborations or internship insights:
 ---
 
 Made with 💙 by Vanij Prasher | Celebal Technologies – Data Science Internship 2025
->>>>>>> 5413da60c633b95ab5e8adcec34c778125499742
+
