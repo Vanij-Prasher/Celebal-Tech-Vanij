@@ -3,7 +3,7 @@ import pandas as pd
 from dotenv import load_dotenv
 
 from langchain_community.document_loaders import CSVLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_groq import ChatGroq
