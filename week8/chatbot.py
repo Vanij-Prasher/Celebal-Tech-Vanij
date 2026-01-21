@@ -3,7 +3,7 @@ import pandas as pd
 from dotenv import load_dotenv
 
 from langchain_community.document_loaders import CSVLoader
-from langchain.text_splitter import CharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_groq import ChatGroq
@@ -25,7 +25,10 @@ import pandas as pd
 df = pd.read_csv(CSV_PATH)
 
 # Split into chunks
-text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200
+)
 docs = text_splitter.split_documents(documents)
 
 # Embedding and vector store
